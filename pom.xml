@@ -93,7 +93,7 @@
                 <version>3.0.0</version> <!-- or any stable version -->
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/fe-tests.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/java/suite/fe-tests.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
