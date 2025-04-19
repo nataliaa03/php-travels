@@ -1,0 +1,12 @@
+version: "3"
+services:
+  selenium:
+    image: selenium/standalone-chrome:latest
+    container_name: selenium-chrome
+    ports:
+      - "4444:4444"
+    shm_size: "2g"
+    environment:
+      - SE_ENABLE_AUTH=false
+      - SE_VNC_NO_PASSWORD=true
+      - SE_OPTS=--session-timeout 15

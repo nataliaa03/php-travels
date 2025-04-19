@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="PhpTravels UI tests">
+
+    <test name="Search Flights Test">
+        <classes>
+            <class name="net.phptravels.SearchFlightTest"/>
+            <class name="net.phptravels.FoundFlightsTest"/>
+        </classes>
+    </test>
+
+</suite>
