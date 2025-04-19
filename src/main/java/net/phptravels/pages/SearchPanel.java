@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 
 import static net.phptravels.utils.WebDriverUtils.clickOnElement;
+import static net.phptravels.utils.WebDriverUtils.waitForElement;
 
 @Slf4j
 public class SearchPanel {
@@ -17,6 +18,7 @@ public class SearchPanel {
     }
 
     public WebElement getFlightTab() {
+        waitForElement(driver, flightTab);
         return driver.findElement(flightTab);
     }
 
