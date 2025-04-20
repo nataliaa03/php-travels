@@ -1,6 +1,7 @@
 package net.phptravels.pages;
 
 import lombok.extern.slf4j.Slf4j;
+import net.phptravels.utils.SlowMotionUtils;
 import org.openqa.selenium.*;
 
 import static net.phptravels.utils.WebDriverUtils.clickOnElement;
@@ -48,6 +49,7 @@ public class SearchPanel {
         By cityTextField = By.cssSelector(String.format("input[name='%s']", dest));
         WebElement field = driver.findElement(cityTextField);
         field.clear();
-        field.sendKeys(value);
+        SlowMotionUtils.slowSendKeys(field, value, 500);
+        //field.sendKeys(value);
     }
 }
