@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.phptravels.utils.SlowMotionUtils;
 import org.openqa.selenium.*;
 
+import java.util.List;
+
 import static net.phptravels.utils.WebDriverUtils.clickOnElement;
 import static net.phptravels.utils.WebDriverUtils.waitForElement;
 
@@ -37,6 +39,17 @@ public class SearchPanel {
                 log.warn("City not found.");
                 return false;
             }
+        }
+        return true;
+    }
+
+    public boolean selectAlternativeCityFromDropdown() {
+        List<WebElement> cities = driver.findElements(By.cssSelector(".d-flex .btn"));
+        try {
+            clickOnElement(driver, cities.get(0));
+        } catch (NoSuchElementException | TimeoutException e) {
+            log.info("Cannot find alternative city.");
+            return false;
         }
         return true;
     }
