@@ -1,5 +1,5 @@
 app = "php-travels"
 
 [[mounts]]
-source = "jenkins-data"
+source = "jenkinsdata"
 destination = "/var/jenkins_home"
