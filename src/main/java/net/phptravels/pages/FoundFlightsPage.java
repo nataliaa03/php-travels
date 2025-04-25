@@ -13,20 +13,11 @@ public class FoundFlightsPage {
     private final By flightContainerInfo = By.cssSelector(".flights-container div");
     private final By flights = By.cssSelector(".flight");
     private final By flightsCount = By.cssSelector(".flex .j_listABTit strong");
-    private final By flightRow = By.cssSelector(".row .flight .row"); //multiple elements
-    private final By cityCodes = By.cssSelector("div .d-flex");  //from flightRow - get two and pick first one
+    private final By flightRow = By.cssSelector(".row .flight .row");
+    private final By cityCodes = By.cssSelector("div .d-flex");
     private final By tripDuration = By.cssSelector(".row .flight .row > div:nth-of-type(2)");
-    private final By flightSegments = By.cssSelector(".row .flight div[ng-repeat^='segment']"); //2 for each flight
-    private final By flightAirline = By.cssSelector(".fw-medium"); //1 from each segment
-
-
-    //assert that first flight has: from, to, trip duration, time
-
-    //assert that first el has name of company, Flight No.
-
-    //assert that price is shown
-
-    //assert that Select Flight is clickable
+    private final By flightSegments = By.cssSelector(".row .flight div[ng-repeat^='segment']");
+    private final By flightAirline = By.cssSelector(".fw-medium");
 
     public FoundFlightsPage(WebDriver driver) {
         this.driver = driver;
@@ -78,14 +69,6 @@ public class FoundFlightsPage {
         } else {
             throw new IllegalArgumentException("Index of an airline for one flight must by 0 or 1.");
         }
-    }
-
-    public WebElement getFlightHeader(int flightIndex) {
-        return getFlightByIndex(flightIndex).findElement(flightRow);
-    }
-
-    public WebElement getFlightSegment(int flightIndex, int segmentIndex) {
-        return getFlightByIndex(flightIndex).findElements(flightSegments).get(segmentIndex);
     }
 
     public FoundFlightsPage waitForFLightsList() {
