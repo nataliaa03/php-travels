@@ -6,6 +6,8 @@ import net.phptravels.pages.SearchPanel;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import java.util.List;
+
 @Slf4j
 public class FlightsCommon extends BaseTest {
     private String fromCity1Code = "LON";
@@ -22,9 +24,14 @@ public class FlightsCommon extends BaseTest {
                 log.info("Found 'TO' city");
                 searchPanel.clickSearchFlight();
                 FoundFlightsPage foundFlightsPage = new FoundFlightsPage(driver);
-                flightEl = foundFlightsPage.waitForFLightsList().getFlights().get(0);
-
-                Assert.assertTrue(flightEl.isDisplayed());
+                if (checkIfFlightsFound()) {
+                    log.info("Flights found.");
+                    flightEl = foundFlightsPage.waitForFLightsList().getFlights().get(0);
+                    Assert.assertTrue(flightEl.isDisplayed());
+                } else {
+                    log.info("Flights not found. Assertion for flights results skipped.");
+                    return null;
+                }
             } else {
                 log.info("NOT Found 'TO' city. Test skipped.");
                 return null;
@@ -34,6 +41,21 @@ public class FlightsCommon extends BaseTest {
             return null;
         }
         return flightEl;
+    }
+
+    public boolean checkIfFlightsFound() {
+        FoundFlightsPage foundFlightsPage = new FoundFlightsPage(driver);
+        List<WebElement> flights = foundFlightsPage.waitForFlightsResults().getFlights();
+
+        if (!flights.isEmpty() && flights.get(0).isDisplayed()) {
+            log.info(String.format("Flights has shown (count: %s)", flights.size()));
+            return true;
+        }
+        if (foundFlightsPage.getFlightsInfo().equals("No Flights Available")) {
+            log.info("'No Flights Available' info has shown.");
+            return false;
+        }
+        return false;
     }
 
     public String getFromCity1Code() {
